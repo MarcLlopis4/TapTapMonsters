@@ -18,12 +18,12 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCoins()
     {
-        coins.text = GameManager.instance.GameData.coins.ToString();
+        //coins.text = GameManager.instance.GameData.coins.ToString();
     }
 
     public void AddCoins(int coins)
     {
-        GameManager.instance.GameData.coins += coins;
+        //GameManager.instance.GameData.coins += coins;
         UpdateCoins();
     }
 }
