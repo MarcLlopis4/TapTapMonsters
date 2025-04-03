@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      txt_backward_deco_01_0: -1952351517951575457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

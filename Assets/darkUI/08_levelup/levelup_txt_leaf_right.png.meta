@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      levelup_txt_leaf_right_0: -484615922265617405
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

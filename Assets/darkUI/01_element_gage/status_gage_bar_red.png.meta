@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      status_gage_bar_red_0: -6967880220161669438
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      levelup_decoline_right_0: 3454299018160938764
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

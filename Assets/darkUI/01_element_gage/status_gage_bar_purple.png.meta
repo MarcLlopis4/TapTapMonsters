@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      status_gage_bar_purple_0: -1609178065109823960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

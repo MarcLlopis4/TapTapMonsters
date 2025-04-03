@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      action_icon_laurel_right_0: -3601865192971674873
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

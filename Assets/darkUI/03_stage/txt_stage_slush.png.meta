@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      txt_stage_slush_0: 3695401649179835485
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
