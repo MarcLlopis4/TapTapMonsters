@@ -7,7 +7,7 @@ public class MonsterHealth : MonoBehaviour
 
     void Start()
     {
-        CurrentHealth = maxHealth;
+       // CurrentHealth = maxHealth;
     }
 
     public void SetHealth(float health)

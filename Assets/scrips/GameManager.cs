@@ -7,9 +7,11 @@ public class GameManager : MonoBehaviour
     public GameObject[] monsterPrefabs; // Array de prefabs de monstruos
     public Transform spawnPoint;
     public Text coinsText; // Texto para mostrar las monedas en la UI
-    public Text healthText; // Texto para mostrar la vida del monstruo
+    public Text healthText;
+    public Image healthBar;// Texto para mostrar la vida del monstruo
     public Button buyGoldGenButton, buyDamageButton; // Botones de mejoras
-    public Text goldGenPriceText, damagePriceText; // Textos de precios de mejoras
+    public Text goldGenPriceText, damagePriceText;
+    public GameObject shop;// Textos de precios de mejoras
 
     private int currentCoins = 0; // Monedas actuales
     private GameObject currentMonster; // Referencia al monstruo actual
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
     private float goldGenIncrease = 1.10f; // Aumento del 2% en generación de oro
     private float damageIncrease = 1.02f; // Aumento del 2% en daño por tap
 
+    bool canTap;
+
     void Start()
     {
         UpdateUI();
@@ -34,39 +38,44 @@ public class GameManager : MonoBehaviour
         buyGoldGenButton.onClick.AddListener(BuyGoldGenerationUpgrade);
         buyDamageButton.onClick.AddListener(BuyDamageUpgrade);
         StartCoroutine(GenerateGold());
+        canTap = true;
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if (canTap)
             {
-                if (hit.collider.CompareTag("Monster"))
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit))
                 {
-                    MonsterHealth monster = hit.collider.GetComponent<MonsterHealth>();
-                    if (monster != null && monster.CurrentHealth > 0)
+                    if (hit.collider.CompareTag("Monster"))
                     {
-                        monster.TakeDamage(damagePerTap);
-                        UpdateHealthText(monster);
-
-                        Animator animator = hit.collider.GetComponent<Animator>();
-                        if (animator != null)
+                        MonsterHealth monster = hit.collider.GetComponent<MonsterHealth>();
+                        if (monster != null && monster.CurrentHealth > 0)
                         {
-                            animator.SetBool("Click", true);
-                            StartCoroutine(ResetClickBool(animator));
-                        }
+                            monster.TakeDamage(damagePerTap);
+                            UpdateHealthText(monster);
 
-                        if (monster.CurrentHealth <= 0)
-                        {
-                            monster.GetComponent<Collider>().enabled = false; // Desactivar el collider
-                            OnMonsterDeath();
+                            Animator animator = hit.collider.GetComponent<Animator>();
+                            if (animator != null)
+                            {
+                                animator.SetBool("Click", true);
+                                StartCoroutine(ResetClickBool(animator));
+                            }
+
+                            if (monster.CurrentHealth <= 0)
+                            {
+                                monster.GetComponent<Collider>().enabled = false; // Desactivar el collider
+                                OnMonsterDeath();
+                            }
                         }
                     }
                 }
             }
+           
         }
     }
 
@@ -113,7 +122,8 @@ public class GameManager : MonoBehaviour
 
     void UpdateHealthText(MonsterHealth monster)
     {
-        healthText.text = "Health: " + monster.CurrentHealth.ToString("F0");
+        healthText.text =  monster.CurrentHealth.ToString("F0");
+        healthBar.fillAmount = monster.CurrentHealth /monsterHealth;
     }
 
     private IEnumerator GenerateGold()
@@ -150,8 +160,22 @@ public class GameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        coinsText.text = "Coins: " + currentCoins;
+        coinsText.text =  currentCoins.ToString();
         goldGenPriceText.text = "Upgrade Gold: " + Mathf.FloorToInt(goldGenPrice);
         damagePriceText.text = "Upgrade Damage: " + Mathf.FloorToInt(damagePrice);
+    }
+
+    public void OpenShop(bool state)
+    {
+        if(state)
+        {
+            shop.SetActive(state);
+            canTap = false;
+        }
+        else
+        {
+            canTap = true;
+        }
+       
     }
 }
